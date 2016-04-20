@@ -1,0 +1,33 @@
+public static double close(Point[] a) {
+    	double minDist = 100;
+    	double mid = (int)Math.ceil(a.length / 2);
+    	double finalD=1000;
+    	if (a.length == 2) {
+        	AL.add(new Results(a[0], a[1]));
+
+    	} else if (a.length == 1) {
+        	minDist = 100;
+    	}
+    	else{
+       	Point[] b = Arrays.copyOfRange(a, 0, (int) mid);
+//        System.out.print("Left Side ");
+//        for(int k = 0; k<b.length; k++)
+//        {
+//            System.out.print("("+(int)b[k].getX()+","+(int)b[k].getY()+") ");
+//        }
+//            System.out.println("");
+//        System.out.print("Right Side");
+       	Point[] c = Arrays.copyOfRange(a, (int) (mid), a.length);
+//        for(int k = 0; k<c.length; k++)
+//        {
+//            System.out.print("("+(int)c[k].getX()+","+(int)c[k].getY()+") ");
+//        }
+//        System.out.println("");
+       	double dl = close(b);
+       	double dr = close(c);
+       	double dc = combine(mid, minDist, a);
+       	minDist= Math.min(dl, dr);
+       	finalD = Math.min(minDist, dc);
+    	}
+     	return finalD;
+	}
